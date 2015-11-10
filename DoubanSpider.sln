@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubanSpider", "DoubanSpider\DoubanSpider.csproj", "{B8964861-6B16-4B1E-8B73-3661B6334E79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubanSpider.Library", "DoubanSpider.Library\DoubanSpider.Library.csproj", "{E503B17D-F89C-4E11-A6DC-1776EFC79081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubanSpider.Model", "DoubanSpider.Model\DoubanSpider.Model.csproj", "{A661BDD2-DF56-4E55-B71F-CE9850DA9481}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B8964861-6B16-4B1E-8B73-3661B6334E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8964861-6B16-4B1E-8B73-3661B6334E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8964861-6B16-4B1E-8B73-3661B6334E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E503B17D-F89C-4E11-A6DC-1776EFC79081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E503B17D-F89C-4E11-A6DC-1776EFC79081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E503B17D-F89C-4E11-A6DC-1776EFC79081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E503B17D-F89C-4E11-A6DC-1776EFC79081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A661BDD2-DF56-4E55-B71F-CE9850DA9481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A661BDD2-DF56-4E55-B71F-CE9850DA9481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A661BDD2-DF56-4E55-B71F-CE9850DA9481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A661BDD2-DF56-4E55-B71F-CE9850DA9481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
