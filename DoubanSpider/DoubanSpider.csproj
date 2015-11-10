@@ -47,6 +47,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoubanSpider.Library\DoubanSpider.Library.csproj">
+      <Project>{e503b17d-f89c-4e11-a6dc-1776efc79081}</Project>
+      <Name>DoubanSpider.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoubanSpider.Model\DoubanSpider.Model.csproj">
+      <Project>{a661bdd2-df56-4e55-b71f-ce9850da9481}</Project>
+      <Name>DoubanSpider.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

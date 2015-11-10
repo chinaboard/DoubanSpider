@@ -8,7 +8,7 @@ namespace DoubanSpider.Library
     public static class HttpHelper
     {
 
-        public static string Get(string url, int timeOut = 1000, int retry = 3, WebProxy proxy = null)
+        public static string Get(string url, int timeOut = 1000, int retry = 3, string referer = null, WebProxy proxy = null)
         {
             while (retry-- > 0)
             {
@@ -23,7 +23,7 @@ namespace DoubanSpider.Library
                 request.Headers.Add("Accept-Encoding", "gzip,deflate");
                 request.Accept = "text/plain, */*; q=0.01";
                 request.Host = "www.douban.com";
-                request.Referer = "http://www.douban.com/group/asshole/discussion?start=0";
+                request.Referer = referer ?? "http://www.douban.com/group/asshole/discussion?start=0";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.0 Chrome/30.0.1599.101 Safari/537.36";
 
                 try

@@ -19,7 +19,7 @@ namespace DoubanSpider.Library
             return TopicFormat(document);
         }
 
-        public static IEnumerable<Topic> TopicFormat(IDocument document)
+        private static IEnumerable<Topic> TopicFormat(IDocument document)
         {
             var topicList = document.QuerySelectorAll(".olt tr").Skip(2);
 

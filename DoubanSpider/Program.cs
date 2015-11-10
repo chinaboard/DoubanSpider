@@ -1,15 +1,7 @@
-﻿using AngleSharp;
+﻿using DoubanSpider.Library;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace DoubanSpider
 {
@@ -25,7 +17,7 @@ namespace DoubanSpider
 
 
             Test();
-
+                
             Console.WriteLine(sw.ElapsedMilliseconds + "ms");
             Console.Read();
         }
@@ -34,7 +26,7 @@ namespace DoubanSpider
         {
             var rootUrl = "http://www.douban.com/group/asshole/discussion";
             var rootHtml = HttpHelper.Get(rootUrl);
-
+            var refererUrl = rootUrl;
             var topicList = await Formater.TopicFormat(rootHtml);
             int i = 1;
             foreach (var topic in topicList)
@@ -43,19 +35,18 @@ namespace DoubanSpider
                 try
                 {
                     var commentsHtml = HttpHelper.Get(topic.Href);
+                    refererUrl = topic.Href;
                     if (string.IsNullOrWhiteSpace(commentsHtml))
                         continue;
-
-                    Stopwatch sw = Stopwatch.StartNew();
-
                     topic.TopicFormat(commentsHtml);
                     var nextUrl = topic.CommentFormat(commentsHtml);
                     while (!string.IsNullOrWhiteSpace(nextUrl))
                     {
-                        commentsHtml = HttpHelper.Get(nextUrl);
+                        commentsHtml = HttpHelper.Get(nextUrl, referer: refererUrl);
+                        refererUrl = nextUrl;
                         nextUrl = topic.CommentFormat(commentsHtml);
                     }
-                    Console.WriteLine($"{i++}\t{topic.PageCount}\t{topic.Comments.Count}\tformat:{sw.ElapsedMilliseconds}ms\t{topic.Title}");
+                    Console.WriteLine($"{i++}\t{topic.PageCount}\t{topic.Comments.Count}\t{topic.Title}");
                     //topic.Comments.ForEach(p =>
                     //{
                     //    if (p.Quote != null)
