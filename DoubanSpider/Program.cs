@@ -13,11 +13,8 @@ namespace DoubanSpider
             Stopwatch sw = Stopwatch.StartNew();
             var str = string.Empty;
 
-
-
-
             Test();
-                
+
             Console.WriteLine(sw.ElapsedMilliseconds + "ms");
             Console.Read();
         }
