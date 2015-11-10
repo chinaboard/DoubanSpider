@@ -14,7 +14,15 @@ namespace DoubanSpider
             var str = string.Empty;
 
             Test();
+            //while (true)
+            //{
 
+            //    var proxy = ProxyPool.GetProxy();
+            //    var address = proxy == null ? "null" : proxy.Address.ToString();
+            //    var html = HttpHelper.Get("http://www.baidu.com", proxy: proxy);
+            //    Console.WriteLine(DateTime.Now + "\t" + address + "\t" + html.Length);
+            //    Thread.Sleep(5000);
+            //}
             Console.WriteLine(sw.ElapsedMilliseconds + "ms");
             Console.Read();
         }
@@ -22,7 +30,7 @@ namespace DoubanSpider
         static async void Test()
         {
             var rootUrl = "http://www.douban.com/group/asshole/discussion";
-            var rootHtml = HttpHelper.Get(rootUrl);
+            var rootHtml = HttpHelper.Get(rootUrl, proxy: ProxyPool.GetProxy());
             var refererUrl = rootUrl;
             var topicList = await Formater.TopicFormat(rootHtml);
             int i = 1;
@@ -31,7 +39,7 @@ namespace DoubanSpider
                 Thread.Sleep(rand.Next(100, 400));
                 try
                 {
-                    var commentsHtml = HttpHelper.Get(topic.Href);
+                    var commentsHtml = HttpHelper.Get(topic.Href, proxy: ProxyPool.GetProxy());
                     refererUrl = topic.Href;
                     if (string.IsNullOrWhiteSpace(commentsHtml))
                         continue;
@@ -39,7 +47,7 @@ namespace DoubanSpider
                     var nextUrl = topic.CommentFormat(commentsHtml);
                     while (!string.IsNullOrWhiteSpace(nextUrl))
                     {
-                        commentsHtml = HttpHelper.Get(nextUrl, referer: refererUrl);
+                        commentsHtml = HttpHelper.Get(nextUrl, referer: refererUrl, proxy: ProxyPool.GetProxy());
                         refererUrl = nextUrl;
                         nextUrl = topic.CommentFormat(commentsHtml);
                     }
