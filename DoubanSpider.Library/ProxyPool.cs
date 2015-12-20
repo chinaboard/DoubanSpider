@@ -66,18 +66,15 @@ namespace DoubanSpider.Library
         {
             if (_proxyList.Count > 0)
             {
-                foreach (var proxyAddress in _proxyList)
+                _proxyList.AsParallel().ForAll(proxyAddress =>
                 {
-                    Task.Run(() =>
+                    if (CheckProxy(proxyAddress))
                     {
-                        if (CheckProxy(proxyAddress))
-                        {
-                            if (ProxyBag.ContainsKey(proxyAddress))
-                                return;
-                            ProxyBag[proxyAddress] = new WebProxy(proxyAddress);
-                        }
-                    });
-                }
+                        if (ProxyBag.ContainsKey(proxyAddress))
+                            return;
+                        ProxyBag[proxyAddress] = new WebProxy(proxyAddress);
+                    }
+                });
             }
         }
 
